@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="440" height="960" viewBox="0 0 440 960" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Helvetica, Arial, sans-serif" font-size="14">
+<title>Mock: the Token stats panel, with example data</title>
+<style>
+  .px { fill: #D97757 } .eye { fill: #2A1A12 }
+  .hi { fill: #ECECEC } .lo { fill: #8E8E8E } .num { font-variant-numeric: tabular-nums }
+  .b { animation: hop .46s ease-in-out infinite }
+  .l1 { animation: step .3s ease-in-out infinite }
+  .l2 { animation: step .3s ease-in-out -.15s infinite }
+  @keyframes hop { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-.35px) } }
+  @keyframes step { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-.45px) } }
+  .col { fill: transparent } .col:hover { fill: rgba(217,119,87,.12) }
+</style>
+<rect width="440" height="960" rx="16" fill="#1A1A1A"/>
+<text class="hi" x="24" y="36" text-anchor="start" font-size="17">Token stats</text>
+<g fill="none" stroke="#CFCFCF" stroke-width="1.6" stroke-linecap="round"><path d="M369 35l14-14M377 21h6v6M369 29v6h6"/><path d="M398 24l12 12M410 24l-12 12"/></g>
+<line x1="0" y1="56.5" x2="440" y2="56.5" stroke="#2C2C2C"/>
+<g transform="translate(26 78) scale(2.67 5.33)" shape-rendering="crispEdges"><g class="b"><rect class="px" x="3" y="0" width="12" height="2"/><rect class="px" x="1" y="2" width="16" height="1"/><rect class="px" x="3" y="3" width="12" height="1"/><rect class="eye" x="5" y="1" width="1" height="1"/><rect class="eye" x="12" y="1" width="1" height="1"/></g><g class="l1"><rect class="px" x="4" y="4" width="1" height="1"/><rect class="px" x="11" y="4" width="1" height="1"/></g><g class="l2"><rect class="px" x="6" y="4" width="1" height="1"/><rect class="px" x="13" y="4" width="1" height="1"/></g></g>
+<text class="hi" x="92" y="92" text-anchor="start" font-size="17" font-weight="600">Token stats</text>
+<text class="lo" x="92" y="114" text-anchor="start">Streaming · 14 turns</text>
+<rect x="20.5" y="136.5" width="399" height="96" rx="16" fill="#1F1F1F" stroke="#2C2C2C"/>
+<text class="hi" x="40" y="166" text-anchor="start" font-size="15">Now</text>
+<text class="hi num" x="40" y="212" text-anchor="start" font-size="34" font-weight="600">84</text>
+<text class="lo" x="86" y="212" text-anchor="start">tok/s</text>
+<text x="400" y="212" text-anchor="end" class="num"><tspan class="hi">0.9s</tspan><tspan class="lo"> ttft     </tspan><tspan class="hi">1.2k</tspan><tspan class="lo"> out</tspan></text>
+<rect x="20.5" y="248.5" width="399" height="150" rx="16" fill="#1F1F1F" stroke="#2C2C2C"/>
+<text class="hi" x="40" y="278" text-anchor="start" font-size="15">Speed</text>
+<text class="lo num" x="400" y="278" text-anchor="end">avg 83 · peak 102</text>
+<defs><linearGradient id="f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D97757" stop-opacity=".28"/><stop offset="1" stop-color="#D97757" stop-opacity="0"/></linearGradient></defs>
+<line x1="40" y1="376.5" x2="400" y2="376.5" stroke="rgba(127,127,127,.22)"/>
+<path d="M40.0,326.8 L67.7,322.4 L95.4,317.9 L123.1,323.8 L150.8,315.6 L178.5,320.9 L206.2,306.7 L233.8,311.2 L261.5,300.0 L289.2,304.5 L316.9,317.1 L344.6,310.4 L372.3,308.2 L400.0,313.4 L400,376 L40,376 Z" fill="url(#f)"/>
+<path d="M40.0,326.8 L67.7,322.4 L95.4,317.9 L123.1,323.8 L150.8,315.6 L178.5,320.9 L206.2,306.7 L233.8,311.2 L261.5,300.0 L289.2,304.5 L316.9,317.1 L344.6,310.4 L372.3,308.2 L400.0,313.4" fill="none" stroke="#D97757" stroke-width="1.75" stroke-linejoin="round" stroke-linecap="round"/>
+<rect class="col" x="26.2" y="300" width="27.7" height="76"><title>Turn 1 · 66 tok/s</title></rect>
+<rect class="col" x="53.8" y="300" width="27.7" height="76"><title>Turn 2 · 72 tok/s</title></rect>
+<rect class="col" x="81.5" y="300" width="27.7" height="76"><title>Turn 3 · 78 tok/s</title></rect>
+<rect class="col" x="109.2" y="300" width="27.7" height="76"><title>Turn 4 · 70 tok/s</title></rect>
+<rect class="col" x="136.9" y="300" width="27.7" height="76"><title>Turn 5 · 81 tok/s</title></rect>
+<rect class="col" x="164.6" y="300" width="27.7" height="76"><title>Turn 6 · 74 tok/s</title></rect>
+<rect class="col" x="192.3" y="300" width="27.7" height="76"><title>Turn 7 · 93 tok/s</title></rect>
+<rect class="col" x="220.0" y="300" width="27.7" height="76"><title>Turn 8 · 87 tok/s</title></rect>
+<rect class="col" x="247.7" y="300" width="27.7" height="76"><title>Turn 9 · 102 tok/s</title></rect>
+<rect class="col" x="275.4" y="300" width="27.7" height="76"><title>Turn 10 · 96 tok/s</title></rect>
+<rect class="col" x="303.1" y="300" width="27.7" height="76"><title>Turn 11 · 79 tok/s</title></rect>
+<rect class="col" x="330.8" y="300" width="27.7" height="76"><title>Turn 12 · 88 tok/s</title></rect>
+<rect class="col" x="358.5" y="300" width="27.7" height="76"><title>Turn 13 · 91 tok/s</title></rect>
+<rect class="col" x="386.2" y="300" width="27.7" height="76"><title>Turn 14 · 84 tok/s</title></rect>
+<rect x="20.5" y="414.5" width="399" height="178" rx="16" fill="#1F1F1F" stroke="#2C2C2C"/>
+<text class="hi" x="40" y="444" text-anchor="start" font-size="15">Cache</text>
+<text class="lo num" x="400" y="444" text-anchor="end">98% hit</text>
+<rect x="40" y="462" width="360" height="5" fill="rgba(127,127,127,.22)"/>
+<rect x="40" y="462" width="351.4" height="5" fill="#5BB98C"/>
+<rect x="393.4" y="462" width="5.8" height="5" fill="#D97757"/>
+<rect x="400.1" y="462" width="2" height="5" fill="#6E8EF0"/>
+<rect x="40" y="490" width="11" height="11" rx="2" fill="#5BB98C"/>
+<text class="hi" x="60" y="500" text-anchor="start">Read</text>
+<text class="lo num" x="330" y="500" text-anchor="end">3.1M</text>
+<text class="hi num" x="400" y="500" text-anchor="end">98%</text>
+<rect x="40" y="514" width="11" height="11" rx="2" fill="#D97757"/>
+<text class="hi" x="60" y="524" text-anchor="start">Written</text>
+<text class="lo num" x="330" y="524" text-anchor="end">48.2k</text>
+<text class="hi num" x="400" y="524" text-anchor="end">2%</text>
+<rect x="40" y="538" width="11" height="11" rx="2" fill="#6E8EF0"/>
+<text class="hi" x="60" y="548" text-anchor="start">Uncached</text>
+<text class="lo num" x="330" y="548" text-anchor="end">212</text>
+<text class="hi num" x="400" y="548" text-anchor="end">0%</text>
+<text class="lo" x="40" y="572" text-anchor="start">Output</text>
+<text class="hi num" x="400" y="572" text-anchor="end">61.7k</text>
+<rect x="20.5" y="608.5" width="399" height="274" rx="16" fill="#1F1F1F" stroke="#2C2C2C"/>
+<text class="hi" x="40" y="638" text-anchor="start" font-size="15">Turns</text>
+<text class="lo num" x="400" y="638" text-anchor="end">14</text>
+<text class="lo" x="44" y="668" text-anchor="start" font-size="13">#</text>
+<text class="lo" x="126" y="668" text-anchor="end" font-size="13">tok/s</text>
+<text class="lo" x="278" y="668" text-anchor="end" font-size="13">ttft</text>
+<text class="lo" x="336" y="668" text-anchor="end" font-size="13">cache</text>
+<text class="lo" x="396" y="668" text-anchor="end" font-size="13">out</text>
+<rect x="34" y="677" width="372" height="24" rx="4" fill="rgba(217,119,87,.10)"/>
+<text class="lo num" x="44" y="694">14</text>
+<text class="hi num" x="126" y="694" text-anchor="end" font-weight="600">84</text>
+<rect x="138" y="686" width="76" height="4" rx="2" fill="rgba(127,127,127,.22)"/>
+<rect x="138" y="686" width="62.6" height="4" rx="2" fill="#D97757" fill-opacity="1"/>
+<text class="hi num" x="278" y="694" text-anchor="end" font-weight="600">3.2s</text>
+<text class="num" fill="#5BB98C" x="336" y="694" text-anchor="end" font-weight="600">100%</text>
+<text class="hi num" x="396" y="694" text-anchor="end" font-weight="600">4.6k</text>
+<text class="lo num" x="44" y="720">13</text>
+<text class="hi num" x="126" y="720" text-anchor="end">91</text>
+<rect x="138" y="712" width="76" height="4" rx="2" fill="rgba(127,127,127,.22)"/>
+<rect x="138" y="712" width="67.8" height="4" rx="2" fill="#D97757" fill-opacity="0.55"/>
+<text class="hi num" x="278" y="720" text-anchor="end">4.1s</text>
+<text class="num" fill="#5BB98C" x="336" y="720" text-anchor="end">100%</text>
+<text class="hi num" x="396" y="720" text-anchor="end">2.3k</text>
+<text class="lo num" x="44" y="746">12</text>
+<text class="hi num" x="126" y="746" text-anchor="end">88</text>
+<rect x="138" y="738" width="76" height="4" rx="2" fill="rgba(127,127,127,.22)"/>
+<rect x="138" y="738" width="65.6" height="4" rx="2" fill="#D97757" fill-opacity="0.55"/>
+<text class="hi num" x="278" y="746" text-anchor="end">3.7s</text>
+<text class="num" fill="#5BB98C" x="336" y="746" text-anchor="end">99%</text>
+<text class="hi num" x="396" y="746" text-anchor="end">6.1k</text>
+<text class="lo num" x="44" y="772">11</text>
+<text class="hi num" x="126" y="772" text-anchor="end">79</text>
+<rect x="138" y="764" width="76" height="4" rx="2" fill="rgba(127,127,127,.22)"/>
+<rect x="138" y="764" width="58.9" height="4" rx="2" fill="#D97757" fill-opacity="0.55"/>
+<text class="hi num" x="278" y="772" text-anchor="end">5.4s</text>
+<text class="num" fill="#5BB98C" x="336" y="772" text-anchor="end">100%</text>
+<text class="hi num" x="396" y="772" text-anchor="end">1.8k</text>
+<text class="lo num" x="44" y="798">10</text>
+<text class="hi num" x="126" y="798" text-anchor="end">96</text>
+<rect x="138" y="790" width="76" height="4" rx="2" fill="rgba(127,127,127,.22)"/>
+<rect x="138" y="790" width="71.5" height="4" rx="2" fill="#D97757" fill-opacity="0.55"/>
+<text class="hi num" x="278" y="798" text-anchor="end">3.3s</text>
+<text class="num" fill="#5BB98C" x="336" y="798" text-anchor="end">99%</text>
+<text class="hi num" x="396" y="798" text-anchor="end">9.2k</text>
+<text class="lo num" x="44" y="824">9</text>
+<text class="hi num" x="126" y="824" text-anchor="end">102</text>
+<rect x="138" y="816" width="76" height="4" rx="2" fill="rgba(127,127,127,.22)"/>
+<rect x="138" y="816" width="76.0" height="4" rx="2" fill="#D97757" fill-opacity="0.55"/>
+<text class="hi num" x="278" y="824" text-anchor="end">2.9s</text>
+<text class="num" fill="#5BB98C" x="336" y="824" text-anchor="end">100%</text>
+<text class="hi num" x="396" y="824" text-anchor="end">3.4k</text>
+<text class="lo num" x="44" y="850">8</text>
+<text class="hi num" x="126" y="850" text-anchor="end">87</text>
+<rect x="138" y="842" width="76" height="4" rx="2" fill="rgba(127,127,127,.22)"/>
+<rect x="138" y="842" width="64.8" height="4" rx="2" fill="#D97757" fill-opacity="0.55"/>
+<text class="hi num" x="278" y="850" text-anchor="end">4.4s</text>
+<text class="num" fill="#5BB98C" x="336" y="850" text-anchor="end">98%</text>
+<text class="hi num" x="396" y="850" text-anchor="end">5.0k</text>
+<text class="lo num" x="44" y="876">7</text>
+<text class="hi num" x="126" y="876" text-anchor="end">93</text>
+<rect x="138" y="868" width="76" height="4" rx="2" fill="rgba(127,127,127,.22)"/>
+<rect x="138" y="868" width="69.3" height="4" rx="2" fill="#D97757" fill-opacity="0.55"/>
+<text class="hi num" x="278" y="876" text-anchor="end">3.6s</text>
+<text class="num" fill="#5BB98C" x="336" y="876" text-anchor="end">100%</text>
+<text class="hi num" x="396" y="876" text-anchor="end">2.7k</text>
+<text class="lo" x="40" y="916" text-anchor="start" font-size="12.5">Main conversation only; subagents are left out. Speed counts</text>
+<text class="lo" x="40" y="934" text-anchor="start" font-size="12.5">output tokens, hidden thinking included.</text>
+</svg>

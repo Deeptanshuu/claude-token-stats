@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="900" height="300" viewBox="0 0 900 300" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Helvetica, Arial, sans-serif">
+  <title>Mock: the Token stats strip above the prompt while a reply streams</title>
+  <style>
+    .px { fill: #D97757 }
+    .eye { fill: #2A1A12 }
+    .reply { fill: #E6E6E6; font-family: Georgia, 'Times New Roman', serif; font-size: 17px }
+    .faint { fill: #8E8E8E }
+    .bright { fill: #ECECEC }
+    .strip { font-size: 14.5px }
+    .foot { font-size: 14.5px }
+
+    /* Clawd streaming: hops and scuttles */
+    .b { animation: hop .46s ease-in-out infinite }
+    .l1 { animation: step .3s ease-in-out infinite }
+    .l2 { animation: step .3s ease-in-out -.15s infinite }
+    @keyframes hop { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-.35px) } }
+    @keyframes step { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-.45px) } }
+
+    /* The live rate, easing between readings */
+    .r { opacity: 0; animation: reading 4s steps(1) infinite }
+    .r1 { opacity: 1 }
+    .r1 { animation-delay: 0s } .r2 { animation-delay: -3s } .r3 { animation-delay: -2s } .r4 { animation-delay: -1s }
+    @keyframes reading { 0% { opacity: 1 } 25%, 100% { opacity: 0 } }
+
+    /* A caret after the streaming text */
+    .caret { animation: caret 1s steps(1) infinite }
+    @keyframes caret { 50% { opacity: 0 } }
+  </style>
+
+  <rect width="900" height="300" rx="16" fill="#1A1A1A"/>
+
+  <!-- The reply streaming in -->
+  <text class="reply" x="40" y="54">The cache served nearly every prompt token this session, so each request</text>
+  <text class="reply" x="40" y="80">only paid for what changed since the last one. Speed held steady around<tspan class="caret" fill="#D97757"> ▍</tspan></text>
+
+  <!-- The strip: the desktop's band above the prompt -->
+  <rect x="24" y="118" width="852" height="44" rx="12" fill="#262626"/>
+  <g transform="translate(42 132) scale(1.28 2.56)" shape-rendering="crispEdges">
+    <g class="b">
+      <rect class="px" x="3" y="0" width="12" height="2"/>
+      <rect class="px" x="1" y="2" width="16" height="1"/>
+      <rect class="px" x="3" y="3" width="12" height="1"/>
+      <rect class="eye" x="5" y="1" width="1" height="1"/>
+      <rect class="eye" x="12" y="1" width="1" height="1"/>
+    </g>
+    <g class="l1"><rect class="px" x="4" y="4" width="1" height="1"/><rect class="px" x="11" y="4" width="1" height="1"/></g>
+    <g class="l2"><rect class="px" x="6" y="4" width="1" height="1"/><rect class="px" x="13" y="4" width="1" height="1"/></g>
+  </g>
+  <text class="strip faint" x="76" y="145">Token stats · live</text>
+
+  <g class="strip" text-anchor="end">
+    <text class="r r1" x="860" y="145"><tspan class="bright">71</tspan><tspan class="faint"> tok/s  ·  </tspan><tspan class="bright">0.9s</tspan><tspan class="faint"> ttft  ·  </tspan><tspan class="bright">1.1k</tspan><tspan class="faint"> out</tspan></text>
+    <text class="r r2" x="860" y="145"><tspan class="bright">74</tspan><tspan class="faint"> tok/s  ·  </tspan><tspan class="bright">0.9s</tspan><tspan class="faint"> ttft  ·  </tspan><tspan class="bright">1.2k</tspan><tspan class="faint"> out</tspan></text>
+    <text class="r r3" x="860" y="145"><tspan class="bright">78</tspan><tspan class="faint"> tok/s  ·  </tspan><tspan class="bright">0.9s</tspan><tspan class="faint"> ttft  ·  </tspan><tspan class="bright">1.2k</tspan><tspan class="faint"> out</tspan></text>
+    <text class="r r4" x="860" y="145"><tspan class="bright">76</tspan><tspan class="faint"> tok/s  ·  </tspan><tspan class="bright">0.9s</tspan><tspan class="faint"> ttft  ·  </tspan><tspan class="bright">1.3k</tspan><tspan class="faint"> out</tspan></text>
+  </g>
+
+  <!-- The prompt -->
+  <rect x="24.5" y="174.5" width="851" height="52" rx="16" fill="#2B2B2B" stroke="#3A3A3A"/>
+  <path d="M48 200.5h14M55 193.5v14" stroke="#CFCFCF" stroke-width="1.6" stroke-linecap="round"/>
+  <text class="faint" x="78" y="206" font-size="16">Type / for commands</text>
+  <g fill="none" stroke="#CFCFCF" stroke-width="1.6" stroke-linecap="round">
+    <rect x="845" y="190" width="8" height="12" rx="4"/>
+    <path d="M841 199a8 8 0 0 0 16 0M849 207v4"/>
+  </g>
+
+  <!-- The footer -->
+  <g class="foot" text-anchor="end">
+    <text x="760" y="262"><tspan class="bright">Opus 5.5</tspan><tspan class="faint">  High</tspan></text>
+    <text class="bright" x="826" y="262">Auto</text>
+  </g>
+  <circle cx="852" cy="257" r="7" fill="none" stroke="#5A5A5A" stroke-width="2"/>
+  <path d="M852 250a7 7 0 0 1 7 7" fill="none" stroke="#4A8CF7" stroke-width="2"/>
+</svg>

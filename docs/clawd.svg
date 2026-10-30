@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="210" viewBox="0 0 720 210" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Helvetica, Arial, sans-serif">
+  <title>Clawd's three moods: idle, waiting, streaming</title>
+  <style>
+    .px { fill: #D97757 }
+    .eye { fill: #2A1A12 }
+    .label { fill: #ECECEC; font-size: 15px; font-weight: 600 }
+    .note { fill: #8E8E8E; font-size: 13px }
+
+    /* idle: breathes and blinks */
+    .idle .b { animation: breathe 3.2s ease-in-out infinite }
+    .idle .e { transform-box: fill-box; transform-origin: center; animation: blink 3.6s infinite }
+    /* waiting: glances about */
+    .waiting .b { animation: breathe 2.4s ease-in-out infinite }
+    .waiting .e { animation: glance 2.4s ease-in-out infinite }
+    /* streaming: hops and scuttles */
+    .streaming .b { animation: hop .46s ease-in-out infinite }
+    .streaming .l1 { animation: step .3s ease-in-out infinite }
+    .streaming .l2 { animation: step .3s ease-in-out -.15s infinite }
+
+    @keyframes breathe { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-.22px) } }
+    @keyframes blink { 0%, 90%, 100% { transform: scaleY(1) } 94% { transform: scaleY(.12) } }
+    @keyframes glance { 0%, 12%, 88%, 100% { transform: translateX(0) } 25%, 45% { transform: translateX(-.5px) } 60%, 80% { transform: translateX(.5px) } }
+    @keyframes hop { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-.35px) } }
+    @keyframes step { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-.45px) } }
+  </style>
+
+  <rect width="720" height="210" rx="16" fill="#1A1A1A"/>
+
+  <!-- One Clawd: an 18 x 5 grid, each pixel 1 across and 2 down, as the terminal banner draws him. -->
+  <defs>
+    <g id="clawd">
+      <g class="b">
+        <rect class="px" x="3" y="0" width="12" height="2"/>
+        <rect class="px" x="1" y="2" width="16" height="1"/>
+        <rect class="px" x="3" y="3" width="12" height="1"/>
+        <g class="e"><rect class="eye" x="5" y="1" width="1" height="1"/><rect class="eye" x="12" y="1" width="1" height="1"/></g>
+      </g>
+      <g class="l1"><rect class="px" x="4" y="4" width="1" height="1"/><rect class="px" x="11" y="4" width="1" height="1"/></g>
+      <g class="l2"><rect class="px" x="6" y="4" width="1" height="1"/><rect class="px" x="13" y="4" width="1" height="1"/></g>
+    </g>
+  </defs>
+
+  <g shape-rendering="crispEdges">
+    <g class="idle" transform="translate(84 46) scale(4.4 8.8)"><use href="#clawd"/></g>
+    <g class="waiting" transform="translate(320 46) scale(4.4 8.8)"><use href="#clawd"/></g>
+    <g class="streaming" transform="translate(556 46) scale(4.4 8.8)"><use href="#clawd"/></g>
+  </g>
+
+  <text class="label" x="124" y="150" text-anchor="middle">Idle</text>
+  <text class="note" x="124" y="172" text-anchor="middle">breathes and blinks</text>
+  <text class="label" x="360" y="150" text-anchor="middle">Waiting</text>
+  <text class="note" x="360" y="172" text-anchor="middle">glances about</text>
+  <text class="label" x="596" y="150" text-anchor="middle">Streaming</text>
+  <text class="note" x="596" y="172" text-anchor="middle">hops and scuttles</text>
+</svg>

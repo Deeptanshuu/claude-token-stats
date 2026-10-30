@@ -1,0 +1,6 @@
+{
+  "name": "claude-token-stats",
+  "owner": { "name": "Deeptanshuu" },
+  "description": "Live token speed, time to first token and prompt-cache stats for Claude Code",
+  "plugins": [{ "name": "token-stats", "source": "./" }]
+}

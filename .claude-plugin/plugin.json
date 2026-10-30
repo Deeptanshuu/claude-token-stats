@@ -1,0 +1,9 @@
+{
+  "name": "token-stats",
+  "version": "0.1.0",
+  "description": "Live tokens per second, time to first token and prompt-cache hit rate for Claude Code: a strip above the prompt with an animated Clawd, and a side panel with every turn",
+  "author": { "name": "Deeptanshuu" },
+  "homepage": "https://github.com/Deeptanshuu/claude-token-stats",
+  "license": "MIT",
+  "types": "./types/index.d.ts"
+}
