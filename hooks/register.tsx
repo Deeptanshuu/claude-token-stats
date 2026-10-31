@@ -337,6 +337,7 @@ export const register: Register = on => {
     let publishedAt = 0
     let chars = 0
     let hasThinking = false
+    let textAt = 0
     let genMs = 0
     // Recent pieces, for a rate over the last WINDOW_MS rather than the whole
     // reply, eased into `shown` so the counter glides instead of jumping.
@@ -360,13 +361,14 @@ export const register: Register = on => {
           yield chunk
           continue
         }
+        textAt ||= now
         const size = chunk.kind === 'input' ? chunk.json.length : chunk.text.length
         chars += size
         recent.push({ at: now, chars: size })
         while (recent.length > 1 && now - recent[0]!.at > WINDOW_MS) recent.shift()
 
         const span = now - recent[0]!.at
-        if (now - firstAt >= MIN_SPAN_MS && span > 0 && now - publishedAt >= PUBLISH_EVERY_MS) {
+        if (now - textAt >= MIN_SPAN_MS && span > 0 && now - publishedAt >= PUBLISH_EVERY_MS) {
           const windowChars = recent.reduce((sum, r) => sum + r.chars, 0) - recent[0]!.chars
           const rate = windowChars / charsPerToken / (span / 1000)
           shown = shown === 0 ? rate : shown + (rate - shown) * EASE
