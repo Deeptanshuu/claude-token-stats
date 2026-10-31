@@ -74,8 +74,8 @@ The panel opens by itself when a session starts; close it and the strip (or `/to
 
 Everything comes from the usage the API reports for each request of the main conversation. Subagents run alongside it and are left out, so they don't blur the speed.
 
-- **tok/s** is output tokens over the time they streamed. Two cases are timed over the whole request instead, since the visible stream would overstate them: a reply whose thinking the API withholds (its tokens count but never stream), and a short reply that arrives in one burst.
-- **Live tok/s** is estimated from the text as it streams, over the last 1.5 seconds, and eased toward each new reading so it glides. When the request ends it settles on the API's real count.
+- **tok/s** is output tokens over the time they streamed. Two cases are timed over the whole request instead, since the visible stream would overstate them: a reply with thinking (its tokens count in full but stream only as a short summary), and a short reply that arrives in one burst.
+- **Live tok/s** is estimated from the text and tool input as they stream, over the last 1.5 seconds, and eased toward each new reading so it glides. Thinking summaries are left out, since their length says little about the tokens behind them, so the figure appears once the reply itself starts. When the request ends it settles on the API's real count.
 - **ttft** is the time from sending a request to its first streamed piece. With hidden thinking, that includes the thinking.
 - **Cache hit** is the share of prompt tokens read from the cache: `cache_read / (input + cache_read + cache_write)`.
 

@@ -30,6 +30,9 @@ const PUBLISH_EVERY_MS = 100
 const WINDOW_MS = 1500
 // How far the shown rate moves toward the measured one per publish.
 const EASE = 0.3
+// The plausible range of chars per token for text and tool input.
+const MIN_CHARS_PER_TOKEN = 1.5
+const MAX_CHARS_PER_TOKEN = 6
 // Shorter spans are mostly jitter, not a rate.
 const MIN_SPAN_MS = 300
 // A visible span shorter than this is a burst, not a rate.
@@ -190,8 +193,10 @@ const togglePane = async ($: EngineInterface) =>
   (await read($, isPaneOpen)) ? closePane($) : openPane($)
 
 export const register: Register = on => {
-  // Seeded with the usual English ratio; recalibrated from each step's real count.
-  let charsPerToken = 4
+  // Characters of streamed text or tool input per output token: seeded near
+  // what recent models write, then learned from steps with no thinking, as a
+  // thinking block streams only as a summary, often under 1 char a token.
+  let charsPerToken = 3
   // The main thread's turns in flight, summed step by step.
   const running = new Map<string, Running>()
 
@@ -331,6 +336,7 @@ export const register: Register = on => {
     let firstAt = 0
     let publishedAt = 0
     let chars = 0
+    let hasThinking = false
     let genMs = 0
     // Recent pieces, for a rate over the last WINDOW_MS rather than the whole
     // reply, eased into `shown` so the counter glides instead of jumping.
@@ -341,16 +347,23 @@ export const register: Register = on => {
     for await (const chunk of stream) {
       if (chunk.kind === 'text' || chunk.kind === 'thinking' || chunk.kind === 'input') {
         const now = await $.clock.now()
-        const size = chunk.kind === 'input' ? chunk.json.length : chunk.text.length
-        chars += size
-        recent.push({ at: now, chars: size })
-        while (recent.length > 1 && now - recent[0]!.at > WINDOW_MS) recent.shift()
-
         if (!firstAt) {
           firstAt = now
           turn.ttftMs ??= now - sentAt
           await update($, live, was => was && { ...was, phase: 'streaming' as const, ttftMs: now - sentAt })
         }
+
+        // A thinking summary's length says little about the tokens behind it,
+        // so only text and tool input go toward the rate.
+        if (chunk.kind === 'thinking') {
+          hasThinking = true
+          yield chunk
+          continue
+        }
+        const size = chunk.kind === 'input' ? chunk.json.length : chunk.text.length
+        chars += size
+        recent.push({ at: now, chars: size })
+        while (recent.length > 1 && now - recent[0]!.at > WINDOW_MS) recent.shift()
 
         const span = now - recent[0]!.at
         if (now - firstAt >= MIN_SPAN_MS && span > 0 && now - publishedAt >= PUBLISH_EVERY_MS) {
@@ -367,15 +380,16 @@ export const register: Register = on => {
       if (chunk.kind === 'stop') {
         const now = await $.clock.now()
         const out = chunk.usage?.output_tokens ?? 0
-        // Thinking the API withholds is counted in output_tokens but never
-        // streams, and a short reply can arrive in one burst: either way the
+        // Thinking is counted in output_tokens but streams only as a summary,
+        // if at all, and a short reply can arrive in one burst: either way the
         // visible span would overstate the rate, so then the whole request
         // is timed instead.
         const isMostlySeen = firstAt > 0 && chars / charsPerToken >= out * 0.7
         const seenMs = now - firstAt
         genMs = isMostlySeen && seenMs >= MIN_SEEN_MS ? seenMs : now - sentAt
-        if (isMostlySeen && out > 0 && chars > 0) {
-          charsPerToken = chars / out
+        if (!hasThinking && out > 0 && chars > 0) {
+          const ratio = Math.min(Math.max(chars / out, MIN_CHARS_PER_TOKEN), MAX_CHARS_PER_TOKEN)
+          charsPerToken += (ratio - charsPerToken) * EASE
         }
       }
 

@@ -277,10 +277,10 @@ test('while a reply streams the strip is live, its rate easing instead of jumpin
   let ui: any
 
   on('turn.step', async function* () {
-    // 40 chars every 100ms (100 tok/s at 4 chars a token), then 4x faster.
+    // 30 chars every 100ms (100 tok/s at 3 chars a token), then 4x faster.
     for (let i = 1; i <= 20; i++) {
       clock.now = i * 100
-      yield { kind: 'text', index: 0, text: 'x'.repeat(i <= 10 ? 40 : 160) }
+      yield { kind: 'text', index: 0, text: 'x'.repeat(i <= 10 ? 30 : 120) }
       if (i === 8) seen.push({ left: await line(ui, LEFT), figures: await line(ui, FIGURES) })
       else if (i % 4 === 0) seen.push({ figures: await line(ui, FIGURES) })
     }
@@ -299,5 +299,43 @@ test('while a reply streams the strip is live, its rate easing instead of jumpin
   expect(rates[0]!).toBeLessThan(130)
   expect(rates[2]!).toBeLessThan(330)
   expect(rates.at(-1)!).toBeGreaterThan(rates[2]!)
+  await ui.unmount()
+})
+
+test('thinking, which streams as a short summary, does not skew the speed', async ($, on) => {
+  const clock = engine(on)
+  // Summaries a little shorter each time: about 3 chars a token down to 0.6.
+  const ratios = [3, 2.2, 1.6, 1.15, 0.85, 0.6]
+  let call = 0
+  let figures = ''
+  let ui: any
+
+  on('turn.step', async function* () {
+    const at = call * 100_000
+    const ratio = ratios[call++]
+    if (ratio !== undefined) {
+      for (let i = 1; i <= 10; i++) {
+        clock.now = at + i * 1000
+        yield { kind: 'thinking', index: 0, text: 'y'.repeat(ratio * 100) }
+      }
+      yield { kind: 'stop', stopReason: 'end_turn', usage: usage(1000) }
+      return { turnId: 't', index: 0, answer: '', toolUses: [], stopReason: 'end_turn', usage: usage(1000) }
+    }
+    // Then plain text at 100 tok/s, 3 chars a token.
+    for (let i = 1; i <= 20; i++) {
+      clock.now = at + i * 100
+      yield { kind: 'text', index: 0, text: 'x'.repeat(30) }
+    }
+    figures = (await line(ui, FIGURES)) ?? ''
+    yield { kind: 'stop', stopReason: 'end_turn', usage: usage(200) }
+    return { turnId: 't', index: 0, answer: 'hi', toolUses: [], stopReason: 'end_turn', usage: usage(200) }
+  })
+
+  ui = await $.ui.mount(BAND)
+  for (let i = 0; i <= ratios.length; i++) await drain($.turn.step(step()))
+
+  const rate = Number(/^(\d+) tok/.exec(figures)?.[1])
+  expect(rate).toBeGreaterThan(60)
+  expect(rate).toBeLessThan(160)
   await ui.unmount()
 })
