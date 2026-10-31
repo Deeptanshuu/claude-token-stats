@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif">
+  <title>Token stats for Claude Code</title>
+  <defs>
+    <radialGradient id="glow" cx="22%" cy="30%" r="60%">
+      <stop offset="0" stop-color="#D97757" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#D97757" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1280" height="640" fill="#1A1A1A"/>
+  <rect width="1280" height="640" fill="url(#glow)"/>
+
+  <!-- Clawd -->
+  <g transform="translate(100 72) scale(16 32)" shape-rendering="crispEdges">
+    <rect fill="#D97757" x="3" y="0" width="12" height="2"/>
+    <rect fill="#D97757" x="1" y="2" width="16" height="1"/>
+    <rect fill="#D97757" x="3" y="3" width="12" height="1"/>
+    <rect fill="#2A1A12" x="5" y="1" width="1" height="1"/>
+    <rect fill="#2A1A12" x="12" y="1" width="1" height="1"/>
+    <rect fill="#D97757" x="4" y="4" width="1" height="1"/>
+    <rect fill="#D97757" x="6" y="4" width="1" height="1"/>
+    <rect fill="#D97757" x="11" y="4" width="1" height="1"/>
+    <rect fill="#D97757" x="13" y="4" width="1" height="1"/>
+  </g>
+
+  <!-- Title -->
+  <text x="100" y="340" font-size="84" font-weight="700" fill="#F2F2F2" letter-spacing="-2">Token stats</text>
+  <text x="100" y="408" font-size="40" fill="#9A9A9A">for Claude Code</text>
+  <text x="100" y="466" font-size="28" fill="#6E6E6E">Live speed, time to first token and cache hits, above the prompt.</text>
+
+  <!-- The strip -->
+  <rect x="100" y="510" width="1080" height="68" rx="16" fill="#262626"/>
+  <g font-size="30" text-anchor="end">
+    <text xml:space="preserve" x="1148" y="554"><tspan fill="#ECECEC" font-weight="600">71</tspan><tspan fill="#8E8E8E"> tok/s   ·   </tspan><tspan fill="#ECECEC" font-weight="600">0.9s</tspan><tspan fill="#8E8E8E"> ttft   ·   </tspan><tspan fill="#ECECEC" font-weight="600">98%</tspan><tspan fill="#8E8E8E"> cache hit</tspan></text>
+  </g>
+  <text x="132" y="554" font-size="30" fill="#8E8E8E">Token stats · live</text>
+</svg>
