@@ -6,7 +6,6 @@
 
 <img src="docs/strip.svg" alt="The Token stats strip above the Claude Code prompt while a reply streams: an animated pixel Clawd, 'Token stats · live', and 71 tok/s · 0.9s ttft · 1.1k out" width="100%">
 
-<sub>Mock-ups with example data.</sub>
 
 </div>
 
